@@ -1,10 +1,12 @@
 package com.example.awesomefat.csc518_listexample;
 
-public class LoyaltyProgram
+import java.io.Serializable;
+
+public class LoyaltyProgram implements Serializable
 {
-    private String name;
-    private String bank;
-    private int point_balance;
+    public String name;
+    public String bank;
+    public int point_balance;
 
     public LoyaltyProgram(String name, String bank)
     {
@@ -17,6 +19,12 @@ public class LoyaltyProgram
     {
         this(name, bank);
         this.point_balance = point_balance;
+    }
+
+    //no argument constructor required for de-serialization
+    public LoyaltyProgram()
+    {
+
     }
 
     public String toString()

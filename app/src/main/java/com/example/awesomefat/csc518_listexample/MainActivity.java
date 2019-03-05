@@ -32,37 +32,28 @@ public class MainActivity extends AppCompatActivity {
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference creditCardRef = database.getReference("creditCards");
-        DatabaseReference myRef = database.getReference("blah");
+        DatabaseReference loyaltyProgramRef = database.getReference("loyaltyPrograms");
 
-        //create card and store in firebase (maybe move this to CORE hint hint)
-        CreditCard cc = new CreditCard("Chase Sapphire", "1/1/19", 3000, 50000);
-        //creditCardRef.push().setValue(cc);
 
-        //myRef.setValue("Hello, World!");
-        //myRef2.setValue("LOL");
 
-        //asynchronous call (non-blocking call) - Observer Design Pattern
+        //asynchronous call (non-blocking call) - Observer Design Pattern --Listens to things changing in the database
         creditCardRef.addValueEventListener(new ValueEventListener()
         {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
+            public void onDataChange(DataSnapshot dataSnapshot) //gives the current state
             {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 //String value = dataSnapshot.getValue(String.class);
                 //System.out.println("********* " + dataSnapshot.toString());
-                for(DataSnapshot ds : dataSnapshot.getChildren())
+                for(DataSnapshot ds : dataSnapshot.getChildren()) //for every datasnapshot
                 {
-                    //System.out.println("********* " + ds.toString());
+                    //System.out.println("********* " + ds.toString()); //print all of the creditcards
                     //de-serialize the card
-                    CreditCard tempCC = ds.getValue(CreditCard.class);
+                    CreditCard tempCC = ds.getValue(CreditCard.class); //reading in the database and making it make into an object
                     Core.addCreditCard(tempCC);
                 }
-
-
-
             }
-
             @Override
             public void onCancelled(DatabaseError error)
             {
@@ -71,6 +62,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //asynchronous call (non-blocking call) - Observer Design Pattern --Listens to things changing in the database
+        loyaltyProgramRef.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot)
+            {
+                for(DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    //de-serialize the card
+                    LoyaltyProgram tempLP = ds.getValue(LoyaltyProgram.class);
+                    Core.addLoyaltyProgram(tempLP);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error)
+            {
+                // Failed to read value
+
+            }
+        });
 
         this.creditCardLV = (ListView)this.findViewById(R.id.creditCardListView);
         this.loyaltyProgramLV = (ListView)this.findViewById(R.id.loyaltyProgramListView);

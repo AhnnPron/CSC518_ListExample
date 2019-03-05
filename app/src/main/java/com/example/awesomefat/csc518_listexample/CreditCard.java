@@ -2,8 +2,11 @@ package com.example.awesomefat.csc518_listexample;
 
 import java.io.Serializable;
 
+//Serializing an object means turning an object into a textual form (probably JSON)
+//Java has a Serializable interface which tells java you have to set up your object in order to be serialized
 public class CreditCard implements Serializable
 {
+    //make fields public in order to serialize
     public String name;
     public String start_date;
     public int min_spend;
@@ -20,6 +23,7 @@ public class CreditCard implements Serializable
     //no argument constructor required for de-serialization
     public CreditCard()
     {
+        //we don't need this right now
     }
 
     public String getName()
