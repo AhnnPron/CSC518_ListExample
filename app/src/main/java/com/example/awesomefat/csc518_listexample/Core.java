@@ -2,6 +2,9 @@ package com.example.awesomefat.csc518_listexample;
 
 import android.widget.ArrayAdapter;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 //singleton - a class filled with stuff acccccebile by everything
 public class Core
 {
@@ -9,6 +12,11 @@ public class Core
     public static LinkedListOfLoyaltyPrograms theLoyaltyProgramsLL = new LinkedListOfLoyaltyPrograms();
     public static CreditCardArrayAdapterForLinkedLists ccCustomAdapter;
     public static LoyaltyProgramArrayAdapterForLinkedLists lpCustomAdapter;
+    public static FirebaseDatabase database = FirebaseDatabase.getInstance();
+    public static DatabaseReference creditCardRef = database.getReference("creditCards");
+    public static DatabaseReference loyaltyProgramRef = database.getReference("loyaltyPrograms");
+    public static CreditCard currentSelectedCard = null;
+
 
     //create card and store in Firebase (maybe move this to CORE hint hint)
     CreditCard cc = new CreditCard("Chase Sapphire", "1/1/19", 3000, 50000);
@@ -17,16 +25,26 @@ public class Core
     LoyaltyProgram lp = new LoyaltyProgram("Freaking Awesome Rewards", "PotOGold", 1 );
 
     //encapsulated
-    public static void addLoyaltyProgram(LoyaltyProgram lp)
+    public static void addLoyaltyProgramLocally(LoyaltyProgram lp)
     {
         //happens in a static context
         Core.theLoyaltyProgramsLL.addAtEnd(lp);
         Core.lpCustomAdapter.notifyDataSetChanged();
     }
 
-    public static void addCreditCard(CreditCard cc)
+    public static void addLoyaltyProgramToFirebase(LoyaltyProgram lp)
     {
-        Core.theCreditCardsLL.addEnd(cc);
-        Core.ccCustomAdapter.notifyDataSetChanged();
+        Core.loyaltyProgramRef.push().setValue(lp);
+    }
+
+    public static void addCreditCardToFirebase(CreditCard cc)
+    {
+        Core.creditCardRef.push().setValue(cc);
+    }
+
+    public static void addCreditCardLocally(CreditCard cc)
+    {
+        Core.theCreditCardsLL.addEnd(cc); //add to LinkedList
+        Core.ccCustomAdapter.notifyDataSetChanged(); //update ArrayAdapter
     }
 }

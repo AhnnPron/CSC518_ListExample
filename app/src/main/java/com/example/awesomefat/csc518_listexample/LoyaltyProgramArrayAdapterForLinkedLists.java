@@ -44,9 +44,9 @@ public class LoyaltyProgramArrayAdapterForLinkedLists extends ArrayAdapter
         TextView lpPoints = (TextView)listItem.findViewById(R.id.lpPointsTV);
         LoyaltyProgram lp = this.loyaltyProgramLinkedList.getAtIndex(position);
 
-        lpName.setText(lp.getName());
-        lpBank.setText(lp.getBank());
-        lpPoints.setText("" + lp.getPoint_balance());
+        lpName.setText(lp.name);
+        lpBank.setText(lp.bank);
+        lpPoints.setText("" + lp.point_balance);
         //return the View after we have set all of the values
         return listItem;
     }

@@ -1,16 +1,21 @@
 package com.example.awesomefat.csc518_listexample;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.io.Serializable;
 
 //Serializing an object means turning an object into a textual form (probably JSON)
 //Java has a Serializable interface which tells java you have to set up your object in order to be serialized
 public class CreditCard implements Serializable
 {
+    //Making it Serializable requires two things: public and no argument constructor
     //make fields public in order to serialize
     public String name;
     public String start_date;
     public int min_spend;
     public int point_bonus;
+    private String key;
+    private DatabaseReference ref;
 
     public CreditCard(String name, String start_date, int min_spend, int point_bonus)
     {
@@ -25,22 +30,20 @@ public class CreditCard implements Serializable
     {
         //we don't need this right now
     }
-
-    public String getName()
+    public void save()
     {
-        return name;
+        //save to the database the current state of this LoyaltyProgram
+        this.ref.setValue(this);
     }
 
-    public String getStart_date() {
-        return start_date;
+    public void delete() //deletes from the database
+    {
+        this.ref.removeValue();
     }
-
-    public int getMin_spend() {
-        return min_spend;
-    }
-
-    public int getPoint_bonus() {
-        return point_bonus;
+    public void setKey(String key)
+    {
+        this.key = key;
+        this.ref = Core.creditCardRef.child(this.key);
     }
 
     public String toString()

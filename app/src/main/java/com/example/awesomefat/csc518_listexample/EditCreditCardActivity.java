@@ -5,34 +5,41 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-public class AddCreditCardActivity extends AppCompatActivity
-{
+public class EditCreditCardActivity extends AppCompatActivity {
+
     private EditText creditCardNameET, creditCardStartDateET,
             creditCardMinSpendET, creditCardBonusPointET;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_credit_card);
+        setContentView(R.layout.activity_edit_credit_card);
+
+        CreditCard selectedCard = (CreditCard)this.getIntent().getSerializableExtra("selectedCreditCard");
+        selectedCard.display();
+
 
         this.creditCardNameET = (EditText)this.findViewById(R.id.creditCardNameET);
         this.creditCardStartDateET = (EditText)this.findViewById(R.id.creditCardStartDate);
         this.creditCardMinSpendET = (EditText)this.findViewById(R.id.creditCardMinSpendET);
         this.creditCardBonusPointET = (EditText)this.findViewById(R.id.creditCardBonusPointsET);
 
+        this.creditCardNameET.setText(Core.currentSelectedCard.name);
+        this.creditCardBonusPointET.setText(Core.currentSelectedCard.point_bonus + "");
+        this.creditCardMinSpendET.setText(Core.currentSelectedCard.min_spend + "");
+        this.creditCardStartDateET.setText(Core.currentSelectedCard.start_date);
     }
 
-    public void onSubmitButtonPressed(View v)
+    public void onDeleteButtonPressed(View v)
+    {
+        Core.currentSelectedCard.delete();
+        this.finish(); //takes us back to the first screen
+    }
+    public void onUpdateButtonPressed(View v)
     {
         String creditCardName = this.creditCardNameET.getText().toString();
         String creditCardStartDate = this.creditCardStartDateET.getText().toString();
         int creditCardMinSpend = Integer.parseInt(this.creditCardMinSpendET.getText().toString());
         int creditCardBonusPoints = Integer.parseInt(this.creditCardBonusPointET.getText().toString());
-
-        CreditCard cc = new CreditCard(creditCardName, creditCardStartDate,
-                creditCardMinSpend,creditCardBonusPoints);
-        Core.addCreditCardLocally(cc);
-        this.finish();
     }
 }
+

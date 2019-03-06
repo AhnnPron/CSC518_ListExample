@@ -1,5 +1,9 @@
 package com.example.awesomefat.csc518_listexample;
 
+import android.provider.ContactsContract;
+
+import com.google.firebase.database.DatabaseReference;
+
 import java.io.Serializable;
 
 public class LoyaltyProgram implements Serializable
@@ -7,6 +11,9 @@ public class LoyaltyProgram implements Serializable
     public String name;
     public String bank;
     public int point_balance;
+    private String key;
+    private DatabaseReference ref;
+
 
     public LoyaltyProgram(String name, String bank)
     {
@@ -21,11 +28,25 @@ public class LoyaltyProgram implements Serializable
         this.point_balance = point_balance;
     }
 
+    public void save()
+    {
+        //save to the database the current state of this LoyaltyProgram
+        this.ref.setValue(this);
+    }
+
+    public void setKey(String key)
+    {
+        this.key = key;
+        this.ref = Core.loyaltyProgramRef.child(this.key);
+    }
+
     //no argument constructor required for de-serialization
     public LoyaltyProgram()
     {
 
     }
+
+
 
     public String toString()
     {
@@ -37,15 +58,4 @@ public class LoyaltyProgram implements Serializable
         System.out.println(this.name + " - " + this.bank + " - " + this.point_balance);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getBank() {
-        return bank;
-    }
-
-    public int getPoint_balance() {
-        return point_balance;
-    }
 }
