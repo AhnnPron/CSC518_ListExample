@@ -35,15 +35,15 @@ public class EditLoyaltyProgramActivity extends AppCompatActivity
 
     public void onUpdateButtonPressed(View v)
     {
+        Intent i = new Intent(this, AddLoyaltyProgramActivity.class);
+        this.startActivity(i);
+
         String loyaltyProgramName = this.loyaltyProgramNameET.getText().toString();
         String loyaltyProgramBank = this.loyaltyProgramBankET.getText().toString();
         int loyaltyProgramPointsBalance = Integer.parseInt(this.loyaltyProgramPointsBalanceET.getText().toString());
 
-        Intent i = new Intent(this, AddLoyaltyProgramActivity.class);
-        this.startActivity(i);
-
         LoyaltyProgram lp = new LoyaltyProgram(loyaltyProgramName, loyaltyProgramBank, loyaltyProgramPointsBalance);
-        Core.addLoyaltyProgramLocally(lp);
+        lp.save();
 
         this.finish();
     }

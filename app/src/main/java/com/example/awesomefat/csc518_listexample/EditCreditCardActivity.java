@@ -1,5 +1,6 @@
 package com.example.awesomefat.csc518_listexample;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,19 +10,17 @@ public class EditCreditCardActivity extends AppCompatActivity {
 
     private EditText creditCardNameET, creditCardStartDateET,
             creditCardMinSpendET, creditCardBonusPointET;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_credit_card);
 
-        CreditCard selectedCard = (CreditCard)this.getIntent().getSerializableExtra("selectedCreditCard");
-        selectedCard.display();
 
-
-        this.creditCardNameET = (EditText)this.findViewById(R.id.creditCardNameET);
-        this.creditCardStartDateET = (EditText)this.findViewById(R.id.creditCardStartDate);
-        this.creditCardMinSpendET = (EditText)this.findViewById(R.id.creditCardMinSpendET);
-        this.creditCardBonusPointET = (EditText)this.findViewById(R.id.creditCardBonusPointsET);
+        this.creditCardNameET = (EditText) this.findViewById(R.id.creditCardNameET);
+        this.creditCardStartDateET = (EditText) this.findViewById(R.id.creditCardStartDate);
+        this.creditCardMinSpendET = (EditText) this.findViewById(R.id.creditCardMinSpendET);
+        this.creditCardBonusPointET = (EditText) this.findViewById(R.id.creditCardBonusPointsET);
 
         this.creditCardNameET.setText(Core.currentSelectedCard.name);
         this.creditCardBonusPointET.setText(Core.currentSelectedCard.point_bonus + "");
@@ -29,17 +28,24 @@ public class EditCreditCardActivity extends AppCompatActivity {
         this.creditCardStartDateET.setText(Core.currentSelectedCard.start_date);
     }
 
-    public void onDeleteButtonPressed(View v)
-    {
+    public void onDeleteButtonPressed(View v) {
         Core.currentSelectedCard.delete();
         this.finish(); //takes us back to the first screen
     }
-    public void onUpdateButtonPressed(View v)
-    {
+
+    public void onUpdateButtonPressed(View v) {
         String creditCardName = this.creditCardNameET.getText().toString();
         String creditCardStartDate = this.creditCardStartDateET.getText().toString();
         int creditCardMinSpend = Integer.parseInt(this.creditCardMinSpendET.getText().toString());
         int creditCardBonusPoints = Integer.parseInt(this.creditCardBonusPointET.getText().toString());
-    }
-}
 
+        Intent i = new Intent(this, AddCreditCardActivity.class);
+        this.startActivity(i);
+
+        CreditCard cc = new CreditCard(creditCardName, creditCardStartDate,
+                        creditCardMinSpend,creditCardBonusPoints);
+                Core.addCreditCardToFirebase(cc);
+        this.finish();
+    }
+
+}

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.myContext = this;
 
-        database = FirebaseDatabase.getInstance();
+        Core.database = FirebaseDatabase.getInstance();
         Core.creditCardRef = database.getReference("creditCards");
         Core.loyaltyProgramRef = database.getReference("loyaltyPrograms");
 
@@ -89,19 +89,29 @@ public class MainActivity extends AppCompatActivity {
         this.loyaltyProgramLV.setAdapter(Core.lpCustomAdapter);
 
         this.creditCardLV.setClickable(true);
-        this.creditCardLV.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
+        this.creditCardLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
             {
                 CreditCard selectedCard = Core.theCreditCardsLL.getAtIndex(position);
                 Intent i = new Intent(myContext, EditCreditCardActivity.class);
                 Core.currentSelectedCard = selectedCard;
-
                 myContext.startActivity(i);
             }
         });
+        this.loyaltyProgramLV.setClickable(true);
+        this.loyaltyProgramLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
+            {
+                LoyaltyProgram selectedProgram = Core.theLoyaltyProgramsLL.getAtIndex(position);
+                Intent j = new Intent(myContext, EditLoyaltyProgramActivity.class);
+                Core.currentSelectedProgram = selectedProgram;
+                myContext.startActivity(j);
+            }
+        });
     }
+
 
     public void onAddCreditCardButtonPressed(View v)
     {

@@ -16,9 +16,10 @@ public class Core
     public static DatabaseReference creditCardRef = database.getReference("creditCards");
     public static DatabaseReference loyaltyProgramRef = database.getReference("loyaltyPrograms");
     public static CreditCard currentSelectedCard = null;
+    public static LoyaltyProgram currentSelectedProgram = null;
 
 
-    //create card and store in Firebase (maybe move this to CORE hint hint)
+    //create card and store in Firebase
     CreditCard cc = new CreditCard("Chase Sapphire", "1/1/19", 3000, 50000);
     //creditCardRef.push().setValue(cc); //create a collection of creditCards; creates a unique entry for each
 

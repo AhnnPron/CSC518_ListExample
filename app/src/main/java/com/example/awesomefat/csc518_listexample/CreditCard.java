@@ -32,7 +32,7 @@ public class CreditCard implements Serializable
     }
     public void save()
     {
-        //save to the database the current state of this LoyaltyProgram
+        //save to the database the current state
         this.ref.setValue(this);
     }
 

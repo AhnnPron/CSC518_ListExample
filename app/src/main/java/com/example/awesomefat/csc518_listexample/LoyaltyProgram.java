@@ -34,6 +34,11 @@ public class LoyaltyProgram implements Serializable
         this.ref.setValue(this);
     }
 
+    public void delete() //deletes from the database
+    {
+        this.ref.removeValue();
+    }
+
     public void setKey(String key)
     {
         this.key = key;
