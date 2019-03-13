@@ -39,12 +39,11 @@ public class EditCreditCardActivity extends AppCompatActivity {
         int creditCardMinSpend = Integer.parseInt(this.creditCardMinSpendET.getText().toString());
         int creditCardBonusPoints = Integer.parseInt(this.creditCardBonusPointET.getText().toString());
 
-        Intent i = new Intent(this, AddCreditCardActivity.class);
-        this.startActivity(i);
-
-        CreditCard cc = new CreditCard(creditCardName, creditCardStartDate,
-                        creditCardMinSpend,creditCardBonusPoints);
-                Core.addCreditCardToFirebase(cc);
+        Core.currentSelectedCard.name = creditCardName;
+        Core.currentSelectedCard.start_date = creditCardStartDate;
+        Core.currentSelectedCard.min_spend = creditCardMinSpend;
+        Core.currentSelectedCard.point_bonus = creditCardBonusPoints;
+        Core.currentSelectedCard.save();
         this.finish();
     }
 

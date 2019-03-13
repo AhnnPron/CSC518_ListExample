@@ -1,6 +1,5 @@
 package com.example.awesomefat.csc518_listexample;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,11 +14,11 @@ public class EditLoyaltyProgramActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_loyalty_program);
+        setContentView(R.layout.activity_edit_loyalty_program);
 
-        this.loyaltyProgramNameET = (EditText)this.findViewById(R.id.loyaltyProgramNameET);
-        this.loyaltyProgramBankET = (EditText)this.findViewById(R.id.loyaltyProgramBankET);
-        this.loyaltyProgramBankET = (EditText)this.findViewById(R.id.loyaltyProgramPointBalanceET);
+        this.loyaltyProgramNameET = (EditText)this.findViewById(R.id.loyaltyNameET);
+        this.loyaltyProgramBankET = (EditText)this.findViewById(R.id.loyaltyBankNameET);
+        this.loyaltyProgramPointsBalanceET = (EditText)this.findViewById(R.id.loyaltyCurrPointsET);
 
         this.loyaltyProgramNameET.setText(Core.currentSelectedProgram.name);
         this.loyaltyProgramBankET.setText(Core.currentSelectedProgram.bank + "");
@@ -35,16 +34,15 @@ public class EditLoyaltyProgramActivity extends AppCompatActivity
 
     public void onUpdateButtonPressed(View v)
     {
-        Intent i = new Intent(this, AddLoyaltyProgramActivity.class);
-        this.startActivity(i);
 
         String loyaltyProgramName = this.loyaltyProgramNameET.getText().toString();
         String loyaltyProgramBank = this.loyaltyProgramBankET.getText().toString();
         int loyaltyProgramPointsBalance = Integer.parseInt(this.loyaltyProgramPointsBalanceET.getText().toString());
 
-        LoyaltyProgram lp = new LoyaltyProgram(loyaltyProgramName, loyaltyProgramBank, loyaltyProgramPointsBalance);
-        lp.save();
-
+        Core.currentSelectedProgram.name = loyaltyProgramName;
+        Core.currentSelectedProgram.bank = loyaltyProgramBank;
+        Core.currentSelectedProgram.point_balance = loyaltyProgramPointsBalance;
+        Core.currentSelectedProgram.save();
         this.finish();
     }
 }

@@ -11,28 +11,7 @@
         android:layout_height="495dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
-
-        <LinearLayout
-            android:layout_width="457dp"
-            android:layout_height="740dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/creditCardUpdateBT"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onUpdateButtonPressed"
-                android:text="Update" />
-
-            <Button
-                android:id="@+id/creditCardDeleteBT"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="onDeleteButtonPressed"
-                android:text="Delete" />
-
-        </LinearLayout>
+        tools:layout_editor_absoluteY="8dp">>
 
         <EditText
             android:id="@+id/creditCardNameET"
@@ -65,5 +44,27 @@
             android:ems="10"
             android:hint="Bonus Points"
             android:inputType="number" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/deleteCreditCardBT"
+                android:layout_width="185dp"
+                android:layout_height="wrap_content"
+                android:onClick="onDeleteButtonPressed"
+                android:text="Delete" />
+
+            <Button
+                android:id="@+id/updateCreditCardBT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onUpdateButtonPressed"
+                android:text="Update" />
+        </LinearLayout>
+
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
