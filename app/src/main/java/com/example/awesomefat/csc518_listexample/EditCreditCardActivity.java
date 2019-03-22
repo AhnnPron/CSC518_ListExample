@@ -1,6 +1,8 @@
 package com.example.awesomefat.csc518_listexample;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,12 +12,15 @@ public class EditCreditCardActivity extends AppCompatActivity {
 
     private EditText creditCardNameET, creditCardStartDateET,
             creditCardMinSpendET, creditCardBonusPointET;
+    private EditCreditCardActivity myself;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_credit_card);
 
+
+        this.myself = myself;
 
         this.creditCardNameET = (EditText) this.findViewById(R.id.creditCardNameET);
         this.creditCardStartDateET = (EditText) this.findViewById(R.id.creditCardStartDate);
@@ -29,8 +34,21 @@ public class EditCreditCardActivity extends AppCompatActivity {
     }
 
     public void onDeleteButtonPressed(View v) {
-        Core.currentSelectedCard.delete();
-        this.finish(); //takes us back to the first screen
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setMessage("Are you sure?");
+        dialog.setTitle("Warning!");
+        dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i)
+            {
+                Core.currentSelectedCard.delete();
+                myself.finish();
+            }
+        });
+        dialog.setNeutralButton("huh?", null);
+        dialog.setNegativeButton("No", null); //if clicked, make the dialog go away ==> null
+        dialog.show();
     }
 
     public void onUpdateButtonPressed(View v) {
