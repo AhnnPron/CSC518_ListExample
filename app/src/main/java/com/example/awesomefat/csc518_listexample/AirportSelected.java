@@ -1,30 +1,29 @@
 package com.example.awesomefat.csc518_listexample;
 
-import android.content.Intent;
-import android.net.Network;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.EditText;
 
-import com.google.firebase.database.DatabaseReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.Scanner;
 
-public class NetworkThread extends Thread
-{
-    private String airportCode;
-    public NetworkThread()
-    {
-        this.airportCode = airportCode;
+public class AirportSelected extends AppCompatActivity {
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_airport_selected);
+        this.filterET = this.findViewById(R.id. filterET);
     }
+    public EditText filterET;
+
     public void run()
     {
         try
         {
-            URL airportURL = new URL("http://ourairports.com/data/airports.csv");
-            //URL flightsURL = new URL("https://www.flightsfrom.com/" + "MKE" + "/destinations");
-            HttpURLConnection conn = (HttpURLConnection)airportURL.openConnection(); //opens url given at airportURL
+            URL flightsURL = new URL("https://www.flightsfrom.com/" + filterET.getText().toString() + "/destinations");
+            HttpURLConnection conn = (HttpURLConnection)flightsURL.openConnection(); //opens url given at airportURL
             Scanner input = new Scanner(conn.getInputStream()); //scans document
             String data = "";
 
@@ -33,9 +32,9 @@ public class NetworkThread extends Thread
                 data = data + input.nextLine();
             }
             System.out.println("***" + data);
-            String[] parts = data.split("airport-content-destination-list-name");
-            String beforeVal = "destination-search-item\">";
-            String afterVal = "</span>";
+            String[] parts = data.split("airport-content-destination-listitem");
+            String beforeVal = "airport-destination-items\">";
+            String afterVal = "</ul>";
             int beforeIndex, afterIndex;
 
             for(String part : parts)
@@ -55,5 +54,4 @@ public class NetworkThread extends Thread
             System.out.println("***" + e.toString());
         }
     }
-
 }
