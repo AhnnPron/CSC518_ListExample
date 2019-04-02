@@ -12,18 +12,17 @@ public class Core
     public static LinkedListOfLoyaltyPrograms theLoyaltyProgramsLL = new LinkedListOfLoyaltyPrograms();
     public static CreditCardArrayAdapterForLinkedLists ccCustomAdapter;
     public static LoyaltyProgramArrayAdapterForLinkedLists lpCustomAdapter;
-    public static FirebaseDatabase database = FirebaseDatabase.getInstance();
-    public static DatabaseReference creditCardRef = database.getReference("creditCards");
-    public static DatabaseReference loyaltyProgramRef = database.getReference("loyaltyPrograms");
+    public static FirebaseDatabase database;
+    public static DatabaseReference creditCardRef;
+    public static DatabaseReference loyaltyProgramRef;
     public static CreditCard currentSelectedCard = null;
-    public static LoyaltyProgram currentSelectedProgram = null;
+    public static LoyaltyProgram currentSelectedLoyaltyProgram = null;
+    public static String airportCode;
 
-
-    //create card and store in Firebase
-    CreditCard cc = new CreditCard("Chase Sapphire", "1/1/19", 3000, 50000);
-    //creditCardRef.push().setValue(cc); //create a collection of creditCards; creates a unique entry for each
-
-    LoyaltyProgram lp = new LoyaltyProgram("Freaking Awesome Rewards", "PotOGold", 1 );
+    public static void addLoyaltyProgramToFirebase(LoyaltyProgram lp)
+    {
+        Core.loyaltyProgramRef.push().setValue(lp);
+    }
 
     //encapsulated
     public static void addLoyaltyProgramLocally(LoyaltyProgram lp)
@@ -33,11 +32,6 @@ public class Core
         Core.lpCustomAdapter.notifyDataSetChanged();
     }
 
-    public static void addLoyaltyProgramToFirebase(LoyaltyProgram lp)
-    {
-        Core.loyaltyProgramRef.push().setValue(lp);
-    }
-
     public static void addCreditCardToFirebase(CreditCard cc)
     {
         Core.creditCardRef.push().setValue(cc);
@@ -45,7 +39,7 @@ public class Core
 
     public static void addCreditCardLocally(CreditCard cc)
     {
-        Core.theCreditCardsLL.addEnd(cc); //add to LinkedList
-        Core.ccCustomAdapter.notifyDataSetChanged(); //update ArrayAdapter
+        Core.theCreditCardsLL.addEnd(cc);
+        Core.ccCustomAdapter.notifyDataSetChanged();
     }
 }

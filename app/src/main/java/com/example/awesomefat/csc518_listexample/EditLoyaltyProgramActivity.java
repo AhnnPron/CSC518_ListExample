@@ -20,15 +20,15 @@ public class EditLoyaltyProgramActivity extends AppCompatActivity
         this.loyaltyProgramBankET = (EditText)this.findViewById(R.id.loyaltyBankNameET);
         this.loyaltyProgramPointsBalanceET = (EditText)this.findViewById(R.id.loyaltyCurrPointsET);
 
-        this.loyaltyProgramNameET.setText(Core.currentSelectedProgram.name);
-        this.loyaltyProgramBankET.setText(Core.currentSelectedProgram.bank + "");
-        this.loyaltyProgramPointsBalanceET.setText(Core.currentSelectedProgram.point_balance + "");
+        this.loyaltyProgramNameET.setText(Core.currentSelectedLoyaltyProgram.name);
+        this.loyaltyProgramBankET.setText(Core.currentSelectedLoyaltyProgram.bank + "");
+        this.loyaltyProgramPointsBalanceET.setText(Core.currentSelectedLoyaltyProgram.point_balance + "");
 
     }
 
     public void onDeleteButtonPressed(View v)
     {
-        Core.currentSelectedProgram.delete();
+        Core.currentSelectedLoyaltyProgram.delete();
         this.finish();
     }
 
@@ -39,10 +39,10 @@ public class EditLoyaltyProgramActivity extends AppCompatActivity
         String loyaltyProgramBank = this.loyaltyProgramBankET.getText().toString();
         int loyaltyProgramPointsBalance = Integer.parseInt(this.loyaltyProgramPointsBalanceET.getText().toString());
 
-        Core.currentSelectedProgram.name = loyaltyProgramName;
-        Core.currentSelectedProgram.bank = loyaltyProgramBank;
-        Core.currentSelectedProgram.point_balance = loyaltyProgramPointsBalance;
-        Core.currentSelectedProgram.save();
+        Core.currentSelectedLoyaltyProgram.name = loyaltyProgramName;
+        Core.currentSelectedLoyaltyProgram.bank = loyaltyProgramBank;
+        Core.currentSelectedLoyaltyProgram.point_balance = loyaltyProgramPointsBalance;
+        Core.currentSelectedLoyaltyProgram.save();
         this.finish();
     }
 }

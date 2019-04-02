@@ -1,7 +1,6 @@
 package com.example.awesomefat.csc518_listexample;
 
 import android.content.Intent;
-import android.net.Network;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +13,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -28,15 +26,11 @@ public class MainActivity extends AppCompatActivity {
     private ListView creditCardLV, loyaltyProgramLV;
     private MainActivity myCurrentActivity;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        NetworkThread nt = new NetworkThread(); //<--BROKEN BECAUSE IT'S EXPECTING AN INPUT
-        nt.start();
 
         this.myCurrentActivity = this;
 
@@ -63,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 LoyaltyProgram selectedLoyaltyProgram = Core.theLoyaltyProgramsLL.getAtIndex(position);
                 Intent i = new Intent(myCurrentActivity, EditLoyaltyProgramActivity.class);
-                Core.currentSelectedProgram = selectedLoyaltyProgram;
+                Core.currentSelectedLoyaltyProgram = selectedLoyaltyProgram;
                 myCurrentActivity.startActivity(i);
 
             }
@@ -149,6 +143,10 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
     }
 
     public void onAirportListButtonPressed(View v)
@@ -156,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, AirportListActivity.class);
         this.startActivity(i);
     }
+
     public void onAddCreditCardButtonPressed(View v)
     {
         Intent i = new Intent(this, AddCreditCardActivity.class);
