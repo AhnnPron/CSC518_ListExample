@@ -43,10 +43,11 @@ public class AirportListActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
             {
-                System.out.println("** Here");
                 Intent i = new Intent(myself, AirportDetailActivity.class);
                 Airport selectedAirport = myself.theFilteredAirports.get(position);
                 i.putExtra("airportCode", selectedAirport.airportCode);
+                i.putExtra("cityName", selectedAirport.city);
+                Core.currentItinerary.push(selectedAirport.city + " " + selectedAirport.airportCode);
                 myself.startActivity(i);
 
             }
