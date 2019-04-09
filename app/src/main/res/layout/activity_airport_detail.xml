@@ -21,6 +21,12 @@
             android:text="View Itinerary" />
 
         <Button
+            android:id="@+id/flightsBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Direct Flights for Month" />
+
+        <Button
             android:id="@+id/button11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FlightsForMonth">
+
+    <LinearLayout
+        android:layout_width="395dp"
+        android:layout_height="715dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp">
+
+        <Button
+            android:id="@+id/janBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="January"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/febBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="February"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/marchBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="March"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/aprilBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="April"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/mayBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="May"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/juneBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="June"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/julyBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="July"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/augBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="August"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/septBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="September"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/octBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="October"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/novBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="November"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/decBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="December"
+            android:textStyle="bold" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

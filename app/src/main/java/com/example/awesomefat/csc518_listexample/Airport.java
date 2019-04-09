@@ -19,7 +19,7 @@ public class Airport implements Serializable
         this.airportCode = airportCode;
     }
 
-    public Airport() //no argument constructor
+    public Airport()
     {
 
     }
@@ -37,7 +37,7 @@ public class Airport implements Serializable
 
     public String toString()
     {
-        return this.city + "|" + this.region + "|" + this.country + "|" + "(" + this.airportCode + ")";
+        return this.city + " | " + this.region + " | " +  this.country + "(" + this.airportCode + ")";
     }
 
     public void display()

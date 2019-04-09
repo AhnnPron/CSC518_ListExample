@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
 import java.util.LinkedList;
 
 public class AirportDetailActivity extends AppCompatActivity
@@ -19,7 +18,6 @@ public class AirportDetailActivity extends AppCompatActivity
     private LinkedList<String> ll;
     private AirportCodeCache acc;
     private ArrayAdapter<String> aa;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -34,9 +32,10 @@ public class AirportDetailActivity extends AppCompatActivity
         this.aa = new ArrayAdapter<String>(this, R.layout.another_row, ll);
         this.destinationsLV.setAdapter(aa);
 
-        this.destinationsLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        this.destinationsLV.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l)
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
             {
                 String selectedAirport = ll.get(position).trim();
 
@@ -47,16 +46,18 @@ public class AirportDetailActivity extends AppCompatActivity
                 String[] parts = selectedAirport.split(" ");
 
                 Intent i = new Intent(myself, AirportDetailActivity.class);
-                i.putExtra("airportCode", parts[parts.length - 1].trim());
+                i.putExtra("airportCode", parts[parts.length-1].trim());
                 String cityName = "";
-                for (int j = 0; j < parts.length - 1; j++) {
+                for(int j = 0; j < parts.length-1; j++)
+                {
                     cityName = cityName + parts[j] + " ";
                 }
                 i.putExtra("cityName", cityName);
-                Core.currentItinerary.push(cityName + " " + parts[parts.length - 1].trim());
+                Core.currentItinerary.push(cityName + " " + parts[parts.length-1].trim());
                 myself.startActivity(i);
             }
         });
+
 
         String cityName = this.getIntent().getStringExtra("cityName");
         String airportCode = this.getIntent().getStringExtra("airportCode");
@@ -72,10 +73,14 @@ public class AirportDetailActivity extends AppCompatActivity
         //nt.start();
 
         //strip the " from both ends of the airport code
+
+
     }
+
     public void onDisplayItineraryButtonPressed(View v)
     {
-        Core.currentItinerary.display();
+        Intent i = new Intent(myself, Itinerary.class);
+        myself.startActivity(i);
     }
 
     @Override
