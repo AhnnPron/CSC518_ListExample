@@ -23,11 +23,7 @@ public class Itinerary extends AppCompatActivity {
         this.myself = this;
         this.itineraryLV = this.findViewById(R.id.itineraryLV);
         aa = new ArrayAdapter<String>(this, R.layout.another_row, this.theItinerary);
-
-        Core.currentItinerary = new ItineraryStack(this,
-                R.layout.another_row, this.ItineraryStack.display());
-
-        this.itineraryLV.setAdapter(ItineraryStack.display());
+        itineraryLV.setAdapter(aa);
     }
 
 }
