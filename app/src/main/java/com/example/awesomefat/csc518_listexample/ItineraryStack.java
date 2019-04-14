@@ -1,5 +1,7 @@
 package com.example.awesomefat.csc518_listexample;
 
+import java.util.LinkedList;
+
 public class ItineraryStack
 {
     private ItineraryStackNode top;
@@ -14,6 +16,18 @@ public class ItineraryStack
     public ItineraryStackNode peek()
     {
         return this.top;
+    }
+
+    public LinkedList<String> getAsList()
+    {
+        LinkedList<String> ll = new LinkedList<String>();
+        ItineraryStackNode currNode = this.top;
+        while(currNode != null)
+        {
+            ll.addFirst(currNode.getPayload());
+            currNode = currNode.getNextNode();
+        }
+        return ll;
     }
 
     public void push(String destination)
