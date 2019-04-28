@@ -20,6 +20,7 @@ public class AirportDestinationThread extends Thread
     private String currDateFrom = "2019-01-01";
     private String currDateTo = "2019-12-31";
 
+    //default constructor
     public AirportDestinationThread(String airportCode, LinkedList<String> destinationStrings, ArrayAdapter<String> aa)
     {
         this.airportCode = airportCode;
@@ -28,11 +29,12 @@ public class AirportDestinationThread extends Thread
         this.myself = this;
     }
 
+    //second constructor with month number and end date
     public AirportDestinationThread(String airportCode, String monthNum, String monthEnd, LinkedList<String> destinationStrings, ArrayAdapter<String> aa)
     {
         this(airportCode, destinationStrings, aa);
-        this.currDateFrom = "2019-" + monthNum + "-01";
-        this.currDateTo = "2019-" + monthNum + "-" + monthEnd;
+        this.currDateFrom = "2019-" + monthNum + "-01"; //default January 1st 2019
+        this.currDateTo = "2019-" + monthNum + "-" + monthEnd; //default December 31st 2019
     }
 
     //get the data from screen scraping, add it to the linked list, and notify the array adapter
@@ -41,6 +43,7 @@ public class AirportDestinationThread extends Thread
         try
         {
             String urlString = String.format("https://www.flightsfrom.com/%s/destinations?dateMethod=month&dateFrom=%s&dateTo=%s", this.airportCode, this.currDateFrom, this.currDateTo);
+            //String.format-->%s is a place holder for the string variables in the following order
             URL airportURL = new URL(urlString);
 
             HttpURLConnection conn = (HttpURLConnection)airportURL.openConnection();

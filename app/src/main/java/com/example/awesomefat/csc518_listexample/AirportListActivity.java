@@ -44,13 +44,14 @@ public class AirportListActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long row_id)
             {
                 Intent i = new Intent(myself, AirportDetailActivity.class);
+                //within this Intent, also do this:
                 Airport selectedAirport = myself.theFilteredAirports.get(position);
                 i.putExtra("airportCode", selectedAirport.airportCode);
                 i.putExtra("cityName", selectedAirport.city);
                 i.putExtra("monthNum", "");
                 i.putExtra("monthLastDay", "");
-                i.putExtra("shouldCache", true);
-                i.putExtra("showMonthButton", true);
+                i.putExtra("shouldCache", true); //use Cache
+                i.putExtra("showMonthButton", true); //show all the month buttons since we are going through the first time
                 Core.currentItinerary.push(selectedAirport.city + " " + selectedAirport.airportCode);
                 myself.startActivity(i);
 

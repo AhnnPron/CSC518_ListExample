@@ -18,6 +18,7 @@ public class AirportDetailActivity extends AppCompatActivity
     private LinkedList<String> ll;
     private AirportCodeCache acc;
     private ArrayAdapter<String> aa;
+    // cityname and airportCode are made global so that the onSubmitMonthButtonPressed function can have access to them
     private String cityName;
     private String airportCode;
 
@@ -60,7 +61,7 @@ public class AirportDetailActivity extends AppCompatActivity
             }
         });
 
-
+//because cityName and airportCode are made global at the top, we don't need to set them as a String here
         cityName = this.getIntent().getStringExtra("cityName");
         airportCode = this.getIntent().getStringExtra("airportCode");
         airportCode = airportCode.replaceAll("\"","");
