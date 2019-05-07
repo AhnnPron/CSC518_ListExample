@@ -17,4 +17,5 @@ public class YelpRestaurantViewActivity extends AppCompatActivity
         this.locationTV = this.findViewById(R.id.locationTV);
         String location = Core.currTree.payload.city;
     }
+
 }
