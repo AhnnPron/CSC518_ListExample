@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "965800548361",
+    "firebase_url": "https://csc518-travelhack-1.firebaseio.com",
+    "project_id": "csc518-travelhack-1",
+    "storage_bucket": "csc518-travelhack-1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965800548361:android:4c8f81f30c949320",
+        "android_client_info": {
+          "package_name": "com.example.awesomefat.csc518_listexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "965800548361-mfi2oettbec67p6rdp3qkklv96p0d79p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.awesomefat.csc518_listexample",
+            "certificate_hash": "bcc7fdcf7cbbe1e12cf68ca3775d1ffe69c5eb47"
+          }
+        },
+        {
+          "client_id": "965800548361-o3oae33qtk5ib6qjg3s8lfirqfau691j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3R50L5_Q2Rc1HgOzTJCjS1Qm1hKeD6Dw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "965800548361-o3oae33qtk5ib6qjg3s8lfirqfau691j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
