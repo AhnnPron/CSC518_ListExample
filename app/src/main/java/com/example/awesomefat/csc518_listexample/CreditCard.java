@@ -1,5 +1,6 @@
 package com.example.awesomefat.csc518_listexample;
 
+import com.example.awesomefat.csc518_listexample.Core;
 import com.google.firebase.database.DatabaseReference;
 
 import java.io.Serializable;

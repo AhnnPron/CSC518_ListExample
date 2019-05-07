@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.awesomefat.csc518_listexample.LinkedListOfLoyaltyPrograms;
+import com.example.awesomefat.csc518_listexample.LoyaltyProgram;
+import com.example.awesomefat.csc518_listexample.R;
+
 public class LoyaltyProgramArrayAdapterForLinkedLists extends ArrayAdapter
 {
     private LinkedListOfLoyaltyPrograms loyaltyProgramLinkedList;

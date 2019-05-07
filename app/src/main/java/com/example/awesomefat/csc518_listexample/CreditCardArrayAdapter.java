@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.awesomefat.csc518_listexample.CreditCard;
+import com.example.awesomefat.csc518_listexample.R;
+
 
 public class CreditCardArrayAdapter extends ArrayAdapter
 {

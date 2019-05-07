@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.awesomefat.csc518_listexample.Core;
+import com.example.awesomefat.csc518_listexample.R;
+
 public class EditLoyaltyProgramActivity extends AppCompatActivity
 {
 

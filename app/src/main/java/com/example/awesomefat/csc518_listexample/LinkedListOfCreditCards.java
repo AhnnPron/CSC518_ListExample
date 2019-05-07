@@ -1,5 +1,8 @@
 package com.example.awesomefat.csc518_listexample;
 
+import com.example.awesomefat.csc518_listexample.CreditCard;
+import com.example.awesomefat.csc518_listexample.CreditCardNode;
+
 public class LinkedListOfCreditCards
 {
     private CreditCardNode head;

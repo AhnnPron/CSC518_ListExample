@@ -1,7 +1,5 @@
 package com.example.awesomefat.csc518_listexample;
 
-import android.widget.ArrayAdapter;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -17,6 +15,7 @@ public class Core
     public static DatabaseReference loyaltyProgramRef;
     public static CreditCard currentSelectedCard = null;
     public static LoyaltyProgram currentSelectedLoyaltyProgram = null;
+    public static ATree currTree = null;
     public static ItineraryStack currentItinerary = new ItineraryStack();
 
     public static void addLoyaltyProgramToFirebase(LoyaltyProgram lp)

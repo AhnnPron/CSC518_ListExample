@@ -26,6 +26,7 @@ public class AirportListActivity extends AppCompatActivity
     private ArrayAdapter<String> aa;
     private EditText filterET;
     private AirportListActivity myself;
+    private AirportTree atree = new AirportTree();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -63,9 +64,11 @@ public class AirportListActivity extends AppCompatActivity
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
                 Airport temp;
+                LinkedList<String> keys = new LinkedList<String>();
                 for(DataSnapshot ds : dataSnapshot.getChildren())
                 {
                     temp = ds.getValue(Airport.class);
+                    atree.add(temp);
                     theAirports.add(temp);
                     theAirportStrings.add(temp.toString());
                 }
@@ -78,6 +81,14 @@ public class AirportListActivity extends AppCompatActivity
 
             }
         });
+    }
+
+    public void onMarakaClick(View v)
+    {
+        Intent i = new Intent(this, AirportTreeViewActivity.class);
+        //i.putExtra("aTree", this.atree.getRoot());
+        Core.currTree = this.atree.getRoot();
+        this.startActivity(i);
     }
 
     public void onFilterButtonPressed(View v)
